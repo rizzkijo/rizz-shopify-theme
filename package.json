@@ -1,0 +1,21 @@
+{
+  "name": "rizz-shopify-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "dotenv -e .env -- cross-env concurrently \"npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --watch --minify\" \"shopify theme dev --store %SHOPIFY_STORE%\"",
+    "build": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "concurrently": "^9.2.0",
+    "cross-env": "^10.0.0",
+    "dotenv": "^17.2.1",
+    "dotenv-cli": "^10.0.0",
+    "tailwindcss": "^4.1.11"
+  }
+}

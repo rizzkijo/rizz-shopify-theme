@@ -1,0 +1,98 @@
+<script async src="{{ 'glider.min.js' | asset_url }}"></script>
+{{ 'glider.min.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.collection %}
+  {% assign selected_collection = collections[section.settings.collection] %}
+
+  {% if selected_collection.products.size > 0 %}
+    <div class="py-[50px]">
+      <h2 class="text-2xl font-bold !mb-8">{{ section.settings.title }}</h2>
+      <div class="glider">
+        {% for product in selected_collection.products %}
+          <div class="product-card bg-card rounded-lg overflow-hidden !mr-4 last:!mr-0">
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | image_url: width: 400 }}" width="400" height="400" class="aspect-square object-cover" alt="{{ product.title }}">
+              <h3 class="text-sm font-medium mt-2">{{ product.title }}</h3>
+              <p class="text-xs text-gray-500">{{ product.price | money }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+      <button aria-label="Previous" class="custom-glider-prev">«</button>
+      <button aria-label="Next" class="custom-glider-next">»</button>
+      <div role="tablist" class="dots"></div>
+    </div>
+  {% else %}
+    <p>No products found in the selected collection.</p>
+  {% endif %}
+
+{% else %}
+  <p>Please select a collection in the theme editor.</p>
+{% endif %}
+
+{% javascript %}
+  window.addEventListener('load', function(){
+    new Glider(document.querySelector('.glider'), {
+      // Mobile-first defaults
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      scrollLock: true,
+      dots: '.dots',
+      rewind: true,
+      draggable: true,
+      arrows: {
+        prev: '.custom-glider-prev',
+        next: '.custom-glider-next'
+      },
+      responsive: [
+        {
+          // screens greater than >= 775px
+          breakpoint: 775,
+          settings: {
+            // Set to `auto` and provide item width to adjust to viewport
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            itemWidth: 'auto',
+            duration: 0.25
+          }
+        },{
+          // screens greater than >= 1024px
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            itemWidth: 'auto',
+            duration: 0.25
+          }
+        }
+      ]
+    });
+  })
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Product Slider",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Product Slider Title",
+        "default": "Featured Products"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Slider",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}
