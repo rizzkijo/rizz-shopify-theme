@@ -1,0 +1,16 @@
+{%- liquid
+  if finalPrice < price
+    assign final_class = 'text-red-500'
+  else
+    assign final_class = 'text-foreground'
+  endif
+-%}
+
+<p class="price-container flex items-baseline gap-2 flex-wrap leading-[1.2]">
+  {% if finalPrice %}
+    <span class="final-price font-bold {{ final_class }}">{{ finalPrice | money }}</span>
+  {% endif %}
+  {% if price %}
+    <span class="compare-at-price line-through text-sm text-foreground/40">{{ price | money }}</span>
+  {% endif %}
+</p>

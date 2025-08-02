@@ -1,0 +1,7 @@
+{% if finalPrice and price and finalPrice < price %}
+  <p class="price-container flex items-baseline gap-2 flex-wrap leading-[1.2]">
+    {%- assign ratio = finalPrice | times: 100.0 | divided_by: price  -%}
+    {%- assign percentage = 100.0 | minus: ratio | round -%}
+    <span class="sale-badge py-[3px] px-[8px] rounded-full bg-red-500 text-white text-xs font-bold">{{ percentage | round }}% Off</span>
+  </p>
+{% endif %}

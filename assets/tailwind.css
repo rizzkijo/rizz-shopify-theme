@@ -40,7 +40,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(96.416% 0.00011 271.152);
+  --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
@@ -117,6 +117,31 @@ body {
   @apply !px-4;
 }
 
+button {
+  @apply cursor-pointer
+}
+
 .shopify-section-group-header-group {
-  @apply relative z-1 shadow-lg;
+  @apply relative z-1 shadow-xl shadow-black/5;
+}
+
+.variant-selector {
+  @apply cursor-pointer border border-foreground/70 text-foreground/70
+  rounded hover:bg-foreground/5 transition-all duration-100 ease-in-out
+  h-[25px] min-w-[25px] flex items-center justify-center px-2;
+}
+.variant-selector:has(input[type=radio]:checked) {
+  @apply bg-primary text-white border-foreground/10 hover:bg-primary;
+}
+
+.glider::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.glider-dot {
+  @apply !bg-foreground/15;
+  
+  &.active {
+    @apply !bg-primary;
+  }
 }
