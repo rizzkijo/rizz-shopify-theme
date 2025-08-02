@@ -1,0 +1,298 @@
+<script defer src="{{ 'glider.min.js' | asset_url }}"></script>
+{{ 'glider.min.css' | asset_url | stylesheet_tag }}
+
+{% comment %} Content Width Class {% endcomment %}
+{% assign width_class = '' %}
+{% if section.settings.content-width == 'full' %}
+  {% assign width_class = 'w-full' %}
+{% elsif section.settings.content-width == 'contained' %}
+  {% assign width_class = 'container' %}
+{% endif %}
+
+{% comment %} Section Padding Top Class {% endcomment %}
+{%- assign pt_class = '' -%}
+{%- if section.settings.padding_top == 'small' -%}
+  {%- assign pt_class = 'pt-[20px]' -%}
+{%- elsif section.settings.padding_top == 'medium' -%}
+  {%- assign pt_class = 'pt-[50px]' -%}
+{%- elsif section.settings.padding_top == 'large' -%}
+  {%- assign pt_class = 'pt-[75px]' -%}
+{%- else -%}
+    {%- assign pt_class = 'pt-0' -%}
+{%- endif -%}
+
+{% comment %} Section Padding Bottom Class {% endcomment %}
+{%- assign pb_class = '' -%}
+{%- if section.settings.padding_bottom == 'small' -%}
+  {%- assign pb_class = 'pb-[20px]' -%}
+{%- elsif section.settings.padding_bottom == 'medium' -%}
+  {%- assign pb_class = 'pb-[50px]' -%}
+{%- elsif section.settings.padding_bottom == 'large' -%}
+  {%- assign pb_class = 'pb-[75px]' -%}
+{%- else -%}
+    {%- assign pb_class = 'pb-0' -%}
+{%- endif -%}
+
+{% comment %} Section Padding Left Class {% endcomment %}
+{%- assign pl_class = '' -%}
+{%- if section.settings.padding_left == 'small' -%}
+  {%- assign pl_class = 'pl-2' -%}
+{%- elsif section.settings.padding_left == 'medium' -%}
+  {%- assign pl_class = 'pl-6' -%}
+{%- elsif section.settings.padding_left == 'large' -%}
+  {%- assign pl_class = 'pl-10' -%}
+{%- endif -%}
+
+{% comment %} Section Padding Right Class {% endcomment %}
+{%- assign pr_class = '' -%}
+{%- if section.settings.padding_right == 'small' -%}
+  {%- assign pr_class = 'pr-2' -%}
+{%- elsif section.settings.padding_right == 'medium' -%}
+  {%- assign pr_class = 'pr-6' -%}
+{%- elsif section.settings.padding_right == 'large' -%}
+  {%- assign pr_class = 'pr-10' -%}
+{%- endif -%}
+
+{% if section.settings.collection %}
+  {% assign selected_collection = collections[section.settings.collection] %}
+
+  {% if selected_collection.products.size > 0 %}
+    <div
+      class="px-4 {{ pt_class }} {{ pb_class }} {{ pl_class }} {{ pr_class }} relative"
+      style="background-color: {{ section.settings.background_color }}"
+      data-section-id="{{ section.id }}"
+    >
+      <div class="{{ width_class }} !mx-auto">
+        <h2 class="text-2xl font-bold !mb-4">{{ section.settings.title }}</h2>
+        <div
+          class="relative group/slider glider-container"
+          data-mobile-column="{{ section.settings.mobile-column }}"
+          data-tablet-column="{{ section.settings.tablet-column }}"
+          data-desktop-column="{{ section.settings.desktop-column }}"
+        >
+          <div class="glider !-mx-[8px]">
+            {% for product in selected_collection.products %}
+              {%- render 'product-card', product: product -%}
+            {% endfor %}
+          </div>
+    
+          <button
+            aria-label="Previous"
+            class="absolute top-1/2 left-4 -translate-y-1/2 custom-glider-prev bg-black/50 text-white
+              rounded-full p-2 hover:bg-black/90 transition-all duration-150 !-ml-2 opacity-0
+              group-hover/slider:opacity-100 group-hover/slider:!ml-0"
+          >
+            {%- render 'icon-big-arrow-left', size: 24 -%}
+          </button>
+    
+          <button
+            aria-label="Next"
+            class="absolute top-1/2 right-4 -translate-y-1/2 custom-glider-next bg-black/50 text-white
+              rounded-full p-2 hover:bg-black/90 transition-all duration-200 !-mr-2 opacity-0
+              group-hover/slider:opacity-100 group-hover/slider:!mr-0"
+          >
+            {%- render 'icon-big-arrow-right', size: 24 -%}
+          </button>
+    
+          <div role="tablist" class="dots !mt-2"></div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p>No products found in the selected collection.</p>
+  {% endif %}
+
+{% else %}
+  <p>Please select a collection in the theme editor.</p>
+{% endif %}
+
+<script>
+  function initGliderInSection(sectionEl) {
+    const container = sectionEl.querySelector('.glider-container');
+    const slider = container?.querySelector('.glider');
+
+    if (!container || !slider || slider.children.length === 0) {
+      return;
+    }
+
+    if (!container || !slider) return;
+
+    // Ambil setting dari data-attribute
+    const mobileColumn = parseInt(container.dataset.mobileColumn || '1');
+    const tabletColumn = parseInt(container.dataset.tabletColumn || '2');
+    const desktopColumn = parseInt(container.dataset.desktopColumn || '3');
+
+    // Init Glider
+    new Glider(slider, {
+      slidesToShow: mobileColumn,
+      slidesToScroll: 1,
+      scrollLock: true,
+      rewind: true,
+      draggable: true,
+      dots: container.querySelector('.dots'),
+      arrows: {
+        prev: container.querySelector('.custom-glider-prev'),
+        next: container.querySelector('.custom-glider-next')
+      },
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: tabletColumn,
+            slidesToScroll: 1,
+            itemWidth: 'auto',
+            duration: 0.25
+          }
+        },
+        {
+          breakpoint: 1366,
+          settings: {
+            slidesToShow: desktopColumn,
+            slidesToScroll: 1,
+            itemWidth: 'auto',
+            duration: 0.25,
+            draggable: false
+          }
+        }
+      ]
+    });
+
+    slider.classList.add('glider-initialized');
+  }
+
+  // Init Glider on first page load
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-section-id]').forEach(function(sectionEl) {
+      initGliderInSection(sectionEl);
+    });
+  });
+
+  // Init Glider on section load (update settings on theme editor)
+  window.addEventListener('shopify:section:load', function(event) {
+    const thisSectionEl = event.target.querySelector('[data-section-id]');
+    if (thisSectionEl) {
+      initGliderInSection(thisSectionEl);
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Product Slider",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Product Slider Title",
+        "default": "Featured Products"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select Collection"
+      },
+      {
+        "type": "select",
+        "id": "padding_top",
+        "label": "Padding Top",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "small", "label": "Small" },
+          { "value": "medium", "label": "Medium" },
+          { "value": "large", "label": "Large" },
+        ],
+        "default": "medium",
+      },
+      {
+        "type": "select",
+        "id": "padding_bottom",
+        "label": "Padding Bottom",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "small", "label": "Small" },
+          { "value": "medium", "label": "Medium" },
+          { "value": "large", "label": "Large" },
+        ],
+        "default": "medium",
+      },
+      {
+        "type": "select",
+        "id": "padding_left",
+        "label": "Padding Left",
+        "options": [
+          { "value": "small", "label": "Small" },
+          { "value": "medium", "label": "Medium" },
+          { "value": "large", "label": "Large" },
+        ],
+        "default": "small",
+      },
+      {
+        "type": "select",
+        "id": "padding_right",
+        "label": "Padding Right",
+        "options": [
+          { "value": "small", "label": "Small" },
+          { "value": "medium", "label": "Medium" },
+          { "value": "large", "label": "Large" },
+        ],
+        "default": "small",
+      },
+      {
+        "type": "select",
+        "id": "content-width",
+        "label": "Content Width",
+        "options": [
+          { "value": "full", "label": "Full-width" },
+          { "value": "contained", "label": "Contained" },
+        ],
+        "default": "full"
+      },
+      {
+        "type": "select",
+        "id": "mobile-column",
+        "label": "Mobile Column Size",
+        "options": [
+          { "value": "1", "label": "1" },
+          { "value": "2", "label": "2" },
+        ],
+        "default": "1"
+      },
+      {
+        "type": "select",
+        "id": "tablet-column",
+        "label": "Tablet Column Size",
+        "options": [
+          { "value": "3", "label": "3" },
+          { "value": "4", "label": "4" },
+          { "value": "5", "label": "5" },
+        ],
+        "default": "3"
+      },
+      {
+        "type": "select",
+        "id": "desktop-column",
+        "label": "Desktop Column Size",
+        "options": [
+          { "value": "4", "label": "4" },
+          { "value": "5", "label": "5" },
+          { "value": "6", "label": "6" },
+        ],
+        "default": "5"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "transparent"
+      },
+    ],
+    "presets": [
+      {
+        "name": "Product Slider",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

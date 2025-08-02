@@ -14,10 +14,19 @@
       "settings": {}
     },
     "product_list_bti6Y9": {
-      "type": "product-list",
+      "type": "product-slider",
       "name": "Product Slider",
       "settings": {
-        "collection": "frontpage"
+        "title": "Featured Products",
+        "collection": "frontpage",
+        "padding-top": "medium",
+        "padding-bottom": "medium",
+        "padding-left": "small",
+        "padding-right": "small",
+        "content-width": "contained",
+        "mobile-column": "1",
+        "tablet-column": "3",
+        "desktop-column": "5"
       }
     }
   },

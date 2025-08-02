@@ -1,0 +1,48 @@
+{%- comment -%}
+  Reusable Button Snippet
+  Params:
+    - size: small | medium | large | xlarge (default: medium)
+    - borderRadius: medium | large | full (default: none)
+    - fullWidth: boolean (default: false)
+    - variant: primary | outline | ghost | link (default: primary)
+    - id: unique identifier for the button (optional)
+    - text: button label (required)
+{%- endcomment -%}
+
+{%- assign size_class = '' -%}
+{%- case size %}
+  {%- when 'small' -%}     {%- assign size_class = 'py-1 px-3 text-sm' -%}
+  {%- when 'medium' -%}    {%- assign size_class = 'py-2 px-4 text-base' -%}
+  {%- when 'large' -%}     {%- assign size_class = 'py-3 px-5 text-lg' -%}
+  {%- when 'xlarge' -%}    {%- assign size_class = 'py-4 px-6 text-xl' -%}
+  {%- else -%}             {%- assign size_class = 'py-2 px-4 text-base' -%}
+{%- endcase -%}
+
+{%- assign radius_class = '' -%}
+{%- case borderRadius %}
+  {%- when 'medium' -%}    {%- assign radius_class = 'rounded-md' -%}
+  {%- when 'large' -%}     {%- assign radius_class = 'rounded-lg' -%}
+  {%- when 'full' -%}      {%- assign radius_class = 'rounded-full' -%}
+{%- endcase -%}
+
+{%- assign width_class = '' -%}
+{%- if fullWidth == true or fullWidth == 'true' -%}
+  {%- assign width_class = 'w-full' -%}
+{%- endif -%}
+
+{%- assign variant_class = '' -%}
+{%- case variant %}
+  {%- when 'primary' -%}   {%- assign variant_class = 'bg-primary text-background hover:bg-primary/80' -%}
+  {%- when 'outline' -%}   {%- assign variant_class = 'border border-blue-600 text-blue-600 hover:bg-blue-50' -%}
+  {%- when 'ghost' -%}     {%- assign variant_class = 'text-blue-600 hover:bg-blue-50' -%}
+  {%- when 'link' -%}      {%- assign variant_class = 'text-blue-600 underline hover:text-blue-800' -%}
+  {%- else -%}             {%- assign variant_class = 'bg-primary text-background hover:bg-primary/80' -%}
+{%- endcase -%}
+
+<button
+  type="button"
+  class="inline-flex items-center justify-center font-medium {{ size_class }} {{ radius_class }} {{ width_class }} {{ variant_class }}"
+  {% if id %} id="{{ id }}"{% endif %}
+>
+  {{ text }}
+</button>
