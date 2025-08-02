@@ -8,5 +8,11 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "logo_image": "shopify://shop_images/rizzkijo-logo-small.png",
+    "favicon_image": "shopify://shop_images/favicon.png",
+    "type_primary_font": "assistant_n4",
+    "type_heading_font": "aleo_n4",
+    "content_for_index": []
+  }
 }
