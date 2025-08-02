@@ -1,19 +1,19 @@
 {%- if section.settings.overlay_opacity == 10 -%}
-  {%- assign overlay_class = 'bg-black/10' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/10 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 20 -%}
-  {%- assign overlay_class = 'bg-black/20' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/20 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 30 -%}
-  {%- assign overlay_class = 'bg-black/30' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/30 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 40 -%}
-  {%- assign overlay_class = 'bg-black/40' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/40 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 50 -%}
-  {%- assign overlay_class = 'bg-black/50' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/50 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 60 -%}
-  {%- assign overlay_class = 'bg-black/60' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/60 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 70 -%}
-  {%- assign overlay_class = 'bg-black/70' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/70 to-background' -%}
 {%- elsif section.settings.overlay_opacity == 80 -%}
-  {%- assign overlay_class = 'bg-black/80' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-background/80 to-background' -%}
 {%- else -%}
   {%- assign overlay_class = 'bg-transparent' -%}
 {%- endif -%}
@@ -29,7 +29,7 @@
 <div class="relative" data-section-id={{ section.id }}>
   {%- if section.settings.upload_video -%}
     <video
-      class="w-full aspect-[3/4] md:aspect-[16/6] object-cover"
+      class="w-full aspect-[3/4] md:aspect-[16/6.5] object-cover"
       loop
       autoplay
       preload="none"
@@ -40,7 +40,7 @@
     ></video>
   {%- else -%}
     <video
-      class="w-full aspect-[3/4] md:aspect-[16/9] xl:aspect-[16/6] object-cover"
+      class="w-full aspect-[3/4] md:aspect-[16/6.5] object-cover"
       loop
       autoplay
       preload="none"
@@ -54,7 +54,10 @@
     class="hero-overlay absolute top-0 right-0 bottom-0 left-0 z-1
       flex flex-col items-center justify-end {{ overlay_class }}"
   >
-    <div class="w-full md:max-w-[700px] xl:max-w-[1000px] mx-auto pt-[20px] md:pt-[40px] pb-[30px] md:pb-[60px] px-4 text-center flex flex-col items-center" style="color: {{ section.settings.text_color }}">
+    <div
+      class="w-full md:max-w-[700px] xl:max-w-[1000px] mx-auto px-4 text-center flex flex-col items-center"
+      style="color: {{ section.settings.text_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px"
+    >
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold !mb-4">{{ section.settings.heading }}</h2>
       <p class="text-base md:text-lg">{{ section.settings.description }}</p>
       {%- if section.settings.button_url != blank -%}
@@ -171,6 +174,18 @@
         { "value": "xl", "label": "XL" },
       ],
       "default": "lg",
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 50,
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 50,
     },
   ],
   "presets": [

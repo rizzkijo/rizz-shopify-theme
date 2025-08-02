@@ -9,10 +9,12 @@
  */
 {
   "current": {
-    "logo_image": "shopify://shop_images/rizzkijo-logo-small.png",
+    "logo_image": "shopify://shop_images/rizzkijo-logo-light.png",
     "favicon_image": "shopify://shop_images/favicon.png",
     "type_primary_font": "assistant_n4",
     "type_heading_font": "aleo_n4",
+    "background_color": "#121212",
+    "foreground_color": "#eaeaea",
     "content_for_index": []
   }
 }

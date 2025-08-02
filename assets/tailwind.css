@@ -122,7 +122,7 @@ button, a {
 }
 
 .shopify-section-group-header-group {
-  @apply relative z-1 shadow-xl shadow-black/5;
+  @apply relative !z-[99];
 }
 
 .variant-selector {

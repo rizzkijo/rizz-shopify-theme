@@ -20,7 +20,9 @@
         "button_label": "Shop Now",
         "button_url": "shopify://products/hoodie-01-l",
         "button_open_newtab": "no",
-        "button_size": "lg"
+        "button_size": "lg",
+        "padding_top": 20,
+        "padding_bottom": 130
       }
     },
     "product_list_bti6Y9": {
@@ -29,7 +31,8 @@
       "settings": {
         "title": "Featured Products",
         "collection": "frontpage",
-        "padding_top": "medium",
+        "margin_top": -100,
+        "padding_top": "none",
         "padding_bottom": "medium",
         "padding_left": "small",
         "padding_right": "small",
@@ -37,7 +40,7 @@
         "mobile-column": "1",
         "tablet-column": "4",
         "desktop-column": "5",
-        "background_color": "#ffffff"
+        "background_color": "rgba(0,0,0,0)"
       }
     }
   },
