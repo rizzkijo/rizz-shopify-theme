@@ -16,7 +16,7 @@
     </a>
     <div class="p-4 flex flex-col !justify-between flex-1">
       <a href="{{ product.url }}">
-        <h3 class="text-xl font-medium !mb-1">{{ product.title }}</h3>
+        <p class="font-medium !mb-1">{{ product.title }}</p>
         {%- render 'price', finalPrice: product.price, price: product.compare_at_price -%}
       </a>
 
@@ -118,7 +118,6 @@
           })
             .then(res => res.json())
             .then(data => {
-              console.log('Added to cart:', data);
               // Optional: update cart icon, show toast, etc.
               setTimeout(() => {
                 this.querySelector('span').innerHTML = "Added";
@@ -127,6 +126,11 @@
                   this.querySelector('span').innerHTML = "Add to Cart";
                 }, 1000);
               }, 1000);
+              return fetch('/cart.js');
+            })
+            .then(response => response.json())
+            .then(cart => {
+              document.getElementById('cart-item-count').textContent = cart.item_count <= 9 ? cart.item_count : "9+";
             })
             .catch(err => {
               console.error('Add to cart error:', err);

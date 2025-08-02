@@ -7,11 +7,11 @@
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
-    
-    {% comment %} <script defer src="{{ 'jquery-3.7.1.slim.min.js' | asset_url }}"></script> {% endcomment %}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+
+    <link rel="shortcut icon" href="{{ settings.favicon_image | image_url: width: 32 }}" type="image/x-icon">
 
     {{ content_for_header }}
   </head>

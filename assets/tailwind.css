@@ -117,8 +117,8 @@ body {
   @apply !px-4;
 }
 
-button {
-  @apply cursor-pointer
+button, a {
+  @apply cursor-pointer;
 }
 
 .shopify-section-group-header-group {

@@ -9,9 +9,19 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "video_background_DhjiJw": {
+      "type": "video-background",
+      "name": "Video Background",
+      "settings": {
+        "overlay_opacity": 60,
+        "text_color": "#efefef",
+        "heading": "Curabitur facilisi",
+        "description": "Porta elementum a enim euismod quam justo lectus. Curabitur facilisi cubilia curae hac habitasse platea dictumst. Nisl malesuada lacinia integer nunc posuere ut hendrerit. Efficitur laoreet mauris pharetra vestibulum fusce dictum risus.",
+        "button_label": "Shop Now",
+        "button_url": "shopify://products/hoodie-01-l",
+        "button_open_newtab": "no",
+        "button_size": "lg"
+      }
     },
     "product_list_bti6Y9": {
       "type": "product-slider",
@@ -19,19 +29,20 @@
       "settings": {
         "title": "Featured Products",
         "collection": "frontpage",
-        "padding-top": "medium",
-        "padding-bottom": "medium",
-        "padding-left": "small",
-        "padding-right": "small",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "padding_left": "small",
+        "padding_right": "small",
         "content-width": "contained",
         "mobile-column": "1",
-        "tablet-column": "3",
-        "desktop-column": "5"
+        "tablet-column": "4",
+        "desktop-column": "5",
+        "background_color": "#ffffff"
       }
     }
   },
   "order": [
-    "main",
+    "video_background_DhjiJw",
     "product_list_bti6Y9"
   ]
 }
