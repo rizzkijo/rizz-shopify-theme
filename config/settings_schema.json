@@ -90,6 +90,18 @@
         "label": "t:labels.foreground"
       },
       {
+        "type": "color",
+        "id": "primary_color",
+        "default": "#20b937",
+        "label": "Primary Color"
+      },
+      {
+        "type": "color",
+        "id": "primary_hover_color",
+        "default": "#18a72e",
+        "label": "Primary Hover Color"
+      },
+      {
         "type": "range",
         "id": "input_corner_radius",
         "min": 0,

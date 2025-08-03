@@ -1,3 +1,11 @@
+{%- if section.settings.title_align == 'left' -%}
+  {%- assign title_align_class = 'text-left justify-start' -%}
+{%- elsif section.settings.title_align == 'center' -%}
+  {%- assign title_align_class = 'text-center justify-center' -%}
+{%- else -%}
+  {%- assign title_align_class = 'text-right justify-end' -%}
+{%- endif -%}
+
 {% comment %} Content Width Class {% endcomment %}
 {% assign width_class = '' %}
 {% if section.settings.content-width == 'full' %}
@@ -50,59 +58,73 @@
   {%- assign pr_class = 'pr-10' -%}
 {%- endif -%}
 
-{% assign id_parts = section.id | split: '_' %}
-{% assign unique_suffix = id_parts | last %}
-
-{% if section.settings.collection %}
-  {% assign selected_collection = collections[section.settings.collection] %}
-
-  {% if selected_collection.products.size > 0 %}
+<div
+  class="px-4 {{ pt_class }} {{ pb_class }} {{ pl_class }} {{ pr_class }} relative z-9"
+  style="background-color: {{ section.settings.background_color }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{{ width_class }} !mx-auto">
+    <h2 class="text-2xl font-bold !mb-4 {{ title_align_class }}">{{ section.settings.title }}</h2>
     <div
-      class="px-4 {{ pt_class }} {{ pb_class }} {{ pl_class }} {{ pr_class }} relative z-9"
-      style="background-color: {{ section.settings.background_color }}"
-      data-section-id="{{ section.id }}"
+      class="relative group/slider owl-carousel-container owl-testimonial"
+      data-mobile-column="{{ section.settings.mobile-column }}"
+      data-tablet-column="{{ section.settings.tablet-column }}"
+      data-desktop-column="{{ section.settings.desktop-column }}"
     >
-      <div class="{{ width_class }} !mx-auto">
-        <h2 class="text-2xl font-bold !mb-4">{{ section.settings.title }}</h2>
-        <div
-          class="relative group/slider owl-carousel-container owl-product{{ unique_suffix }}"
-          data-mobile-column="{{ section.settings.mobile-column }}"
-          data-tablet-column="{{ section.settings.tablet-column }}"
-          data-desktop-column="{{ section.settings.desktop-column }}"
-        >
-          <div class="owl-carousel owl-theme">
-            {% for product in selected_collection.products %}
-              {%- render 'product-card', product: product -%}
-            {% endfor %}
+      <div class="owl-carousel owl-theme bg-card shadow-lg rounded-md min-h-[300px] flex !py-10">
+        {% for testimonial in shop.metafields.custom.testimonials.value %}
+          <div class="flex flex-col flex-1 px-8 items-center justify-center text-center">
+            {% if testimonial.avatar %}
+              <img
+                src="{{ testimonial.avatar | image_url: width: 70 }}"
+                alt="{{ testimonial.name }}"
+                width="70"
+                height="70"
+                class="rounded-full aspect-square object-cover !mb-2 shadow-lg !w-[70px] !h-[70px]"
+                loading="lazy"
+              />
+            {% else %}
+              <img
+                src="{{ 'avatar.png' | asset_url }}"
+                alt="{{ testimonial.name }}"
+                width="70"
+                height="70"
+                class="rounded-full aspect-square object-cover !mb-2 shadow-lg !w-[70px] !h-[70px]"
+                loading="lazy"
+              />
+            {% endif %}
+            <p class="title text-2xl font-bold !mb-4">{{ testimonial.name }}</p>
+            <p>
+              <span class="star-rating" style="--rating: {{ testimonial.rating }};"></span>
+            </p>
+            <span class="text-foreground/30 inline-block !mt-4">
+              {%- render 'icon-quote-comment', size: 36 -%}
+            </span>
+            <p class="w-[500px] max-w-full text-lg">"{{ testimonial.quote }}"</p>
           </div>
-    
-          <button
-            aria-label="Previous"
-            class="absolute z-1 top-1/2 left-4 -translate-y-1/2 owl-prev bg-black/50 text-white
-              rounded-full p-2 hover:bg-black/90 transition-all duration-150 !-ml-2 opacity-0
-              group-hover/slider:opacity-100 group-hover/slider:!ml-0"
-          >
-            {%- render 'icon-big-arrow-left', size: 24 -%}
-          </button>
-    
-          <button
-            aria-label="Next"
-            class="absolute z-1 top-1/2 right-4 -translate-y-1/2 owl-next bg-black/50 text-white
-              rounded-full p-2 hover:bg-black/90 transition-all duration-200 !-mr-2 opacity-0
-              group-hover/slider:opacity-100 group-hover/slider:!mr-0"
-          >
-            {%- render 'icon-big-arrow-right', size: 24 -%}
-          </button>
-        </div>
+        {% endfor %}
       </div>
-    </div>
-  {% else %}
-    <p>No products found in the selected collection.</p>
-  {% endif %}
 
-{% else %}
-  <p>Please select a collection in the theme editor.</p>
-{% endif %}
+      <button
+        aria-label="Previous"
+        class="absolute z-1 top-1/2 left-4 -translate-y-1/2 owl-prev bg-black/50 text-white
+          rounded-full p-2 hover:bg-black/90 transition-all duration-150 !-ml-2 opacity-0
+          group-hover/slider:opacity-100 group-hover/slider:!ml-0"
+      >
+        {%- render 'icon-big-arrow-left', size: 24 -%}
+      </button>
+
+      <button
+        aria-label="Next"
+        class="absolute z-1 top-1/2 right-4 -translate-y-1/2 owl-next bg-black/50 text-white
+          rounded-full p-2 hover:bg-black/90 transition-all duration-200 !-mr-2 opacity-0
+          group-hover/slider:opacity-100 group-hover/slider:!mr-0"
+      >
+        {%- render 'icon-big-arrow-right', size: 24 -%}
+      </button>
+    </div>
+  </div>
+</div>
 
 <style>
   #shopify-section-{{ section.id }} {
@@ -111,24 +133,10 @@
 </style>
 
 <script>
-  function setEqualHeightForOwlItems{{ unique_suffix }}(carouselSelector) {
-    let maxHeight = 0;
-
-    $(`${carouselSelector} .owl-item`).each(function () {
-      const itemHeight = $(this).outerHeight();
-      if (itemHeight > maxHeight) maxHeight = itemHeight;
-    });
-
-    $(`${carouselSelector} .owl-item`).height(maxHeight);
-  }
-
-  function initCarouselSection{{ unique_suffix }}(sectionEl) {
-    const container = sectionEl.querySelector('.owl-product{{ unique_suffix }}');
-    const slider = container?.querySelector('.owl-product{{ unique_suffix }} .owl-carousel');
-    console.log('jotest sectionEl', sectionEl);
-    console.log('jotest container', container);
-    console.log('jotest slider', slider);
-
+  function initTestimonialCarousel(sectionEl) {
+    const container = sectionEl.querySelector('.owl-testimonial.owl-carousel-container');
+    const slider = container?.querySelector('.owl-testimonial .owl-carousel');
+    
     if (!container || !slider || slider.children.length === 0) {
       return;
     }
@@ -139,17 +147,14 @@
     const tabletColumn = parseInt(container.dataset.tabletColumn || '2');
     const desktopColumn = parseInt(container.dataset.desktopColumn || '3');
 
-    const owlProduct{{ unique_suffix }} = $(".owl-product{{ unique_suffix }} .owl-carousel").owlCarousel({
+    const owlTestimonial = $(".owl-testimonial .owl-carousel").owlCarousel({
       loop: true,
       margin: 16,
       responsiveClass: true,
       nav: false,
-      dots: false,
-      autoplay: false,
+      autoplay: true,
       autoplayTimeout: 5000,
       autoplayHoverPause: true,
-      onInitialized: function() { setEqualHeightForOwlItems{{ unique_suffix }}('.owl-product{{ unique_suffix }} .owl-carousel') },
-      onResized: function() { setEqualHeightForOwlItems{{ unique_suffix }}('.owl-product{{ unique_suffix }} .owl-carousel') },
       responsive:{
         0:{
           items: mobileColumn,
@@ -163,19 +168,19 @@
       }
     });
 
-    $('.owl-product{{ unique_suffix }} .owl-next').click(function () {
-      owlProduct{{ unique_suffix }}.trigger('next.owl.carousel');
+    $('.owl-testimonial .owl-next').click(function () {
+      owlTestimonial.trigger('next.owl.carousel');
     });
 
-    $('.owl-product{{ unique_suffix }} .owl-prev').click(function () {
-      owlProduct{{ unique_suffix }}.trigger('prev.owl.carousel');
+    $('.owl-testimonial .owl-prev').click(function () {
+      owlTestimonial.trigger('prev.owl.carousel');
     });
   }
 
   // Init Owl Carousel on first page load
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-section-id]').forEach(function(sectionEl) {
-      initCarouselSection{{ unique_suffix }}(sectionEl);
+      initTestimonialCarousel(sectionEl);
     });
   });
 
@@ -183,26 +188,31 @@
   window.addEventListener('shopify:section:load', function(event) {
     const thisSectionEl = event.target.querySelector('[data-section-id]');
     if (thisSectionEl) {
-      initCarouselSection{{ unique_suffix }}(thisSectionEl);
+      initTestimonialCarousel(thisSectionEl);
     }
   });
 </script>
 
 {% schema %}
   {
-    "name": "Product Slider",
+    "name": "Testimonial Slider",
     "tag": "section",
     "settings": [
       {
         "type": "text",
         "id": "title",
-        "label": "Product Slider Title",
-        "default": "Featured Products"
+        "label": "Title",
+        "default": "Customer Reviews"
       },
       {
-        "type": "collection",
-        "id": "collection",
-        "label": "Select Collection"
+        "type": "select",
+        "id": "title_align",
+        "label": "Title Align",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" },
+        ],
       },
       {
         "type":"number",
@@ -281,22 +291,22 @@
         "id": "tablet-column",
         "label": "Tablet Column Size",
         "options": [
+          { "value": "1", "label": "1" },
+          { "value": "2", "label": "2" },
           { "value": "3", "label": "3" },
-          { "value": "4", "label": "4" },
-          { "value": "5", "label": "5" },
         ],
-        "default": "3"
+        "default": "1"
       },
       {
         "type": "select",
         "id": "desktop-column",
         "label": "Desktop Column Size",
         "options": [
-          { "value": "4", "label": "4" },
-          { "value": "5", "label": "5" },
-          { "value": "6", "label": "6" },
+          { "value": "1", "label": "1" },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" },
         ],
-        "default": "5"
+        "default": "1"
       },
       {
         "type": "color",
@@ -307,7 +317,7 @@
     ],
     "presets": [
       {
-        "name": "Product Slider",
+        "name": "Testimonial Slider",
         "settings": {
         }
       }

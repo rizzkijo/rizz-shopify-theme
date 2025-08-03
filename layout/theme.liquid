@@ -8,6 +8,12 @@
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
 
+    {{ 'owl.carousel.min.css' | asset_url | stylesheet_tag }}
+    {{ 'owl.theme.default.min.css' | asset_url | stylesheet_tag }}
+    
+    <script src="{{ 'jquery-3.7.1.slim.min.js' | asset_url }}" defer></script>
+    <script defer src="{{ 'owl.carousel.min.js' | asset_url }}"></script>
+
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
 
@@ -16,7 +22,7 @@
     {{ content_for_header }}
   </head>
 
-  <body class="dark">
+  <body>
     {% sections 'header-group' %}
 
     {{ content_for_layout }}

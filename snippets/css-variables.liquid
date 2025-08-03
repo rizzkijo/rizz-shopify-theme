@@ -2,6 +2,7 @@
   {% # Loads all font variantions with display: swap %}
   {{ settings.type_primary_font | font_face: font_display: 'swap' }}
   {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'weight', 'medium' | font_face: font_display: 'swap' }}
   {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
   {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
 
@@ -19,8 +20,10 @@
     --font-heading--weight: {{ settings.type_heading_font.weight }};
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
-    --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.foreground_color }};
+    --color-background-theme: {{ settings.background_color }};
+    --color-foreground-theme: {{ settings.foreground_color }};
+    --color-primary-theme: {{ settings.primary_color }};
+    --color-primary-hover-theme: {{ settings.primary_hover_color }};
     --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
   }
 {% endstyle %}

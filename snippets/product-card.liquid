@@ -1,22 +1,27 @@
 {%- assign button_id = 'btn-add-to-cart-' | append: product.id -%}
 
-<div class="product-card-container px-[8px] flex flex-1" data-product-id="{{ product.id }}">
+<div class="product-card-container flex flex-1 h-full" data-product-id="{{ product.id }}">
   <div class="group product-card bg-card rounded-lg overflow-hidden border border-foreground/10 flex flex-col flex-1">
     <a href="{{ product.url }}" class="image-wrapper overflow-hidden aspect-square relative">
       <div class="badge-container absolute top-3 right-3 flex gap-2 items-center justify-end z-1">
         {%- render 'disc-badge', finalPrice: product.price, price: product.compare_at_price -%}
       </div>
-      <img
-        src="{{ product.featured_image | image_url: width: 400 }}"
-        width="400"
-        height="400"
-        class="w-full aspect-square object-cover transition-all duration-200 ease-linear group-hover:scale-[1.1] group-hover:rotate-1"
-        alt="{{ product.title }}"
-      >
+      <picture>
+        <source media="(min-width: 768px)" srcset="{{ product.featured_image | image_url: height: 250 }}">
+        <source media="(min-width: 1180px)" srcset="{{ product.featured_image | image_url: height: 300 }}">
+        <img
+          src="{{ product.featured_image | image_url: height: 150 }}"
+          width="150"
+          height="150"
+          class="w-full aspect-square object-cover transition-all duration-200 ease-linear group-hover:scale-[1.1] group-hover:rotate-1"
+          alt="{{ product.title }}"
+          loading="lazy"
+        >
+      </picture>
     </a>
     <div class="p-4 flex flex-col !justify-between flex-1">
       <a href="{{ product.url }}">
-        <p class="font-medium !mb-1">{{ product.title }}</p>
+        <p class="font-medium !mb-1 text-sm md:text-base">{{ product.title }}</p>
         {%- render 'price', finalPrice: product.price, price: product.compare_at_price -%}
       </a>
 
@@ -26,7 +31,7 @@
         {%- for option in product.options -%}
           <div class="!mt-2 relative">
             <p class="text-sm !mb-1 font-medium">{{ option }}:</p>
-            <div class="flex flex-wrap gap-2">
+            <div class="variant-wrapper flex gap-2 whitespace-nowrap overflow-x-auto">
               {% for variant in product.variants %}
                 <label class="variant-selector">
                   <input
@@ -55,14 +60,14 @@
         <button
           type="button"
           id="{{ button_id }}"
-          class="btn-add-to-cart py-2 px-8 w-full bg-primary font-medium text-white hover:bg-primary/90
+          class="btn-add-to-cart py-2 px-8 w-full bg-primary text-white font-medium hover:bg-primary/90
             rounded-md flex items-center justify-center gap-2 disabled:bg-primary/50 disabled:!cursor-default"
           aria-label="Add to Cart"
           data-product-id={{ product.id }}
           data-has-single-variant="{% if product.options.first == 'Title' %}true{% else %}false{% endif %}"
         >
           {%- render 'icon-cart', size: 18 -%}
-          <span>Add to Cart</span>
+          <span>Add<span class="hidden md:inline"> to Cart</span></span>
         </button>
       </div>
     </div>

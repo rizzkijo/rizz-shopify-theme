@@ -13,16 +13,21 @@
       "type": "video-background",
       "name": "Video Background",
       "settings": {
-        "overlay_opacity": 60,
-        "text_color": "#efefef",
-        "heading": "Curabitur facilisi",
-        "description": "Porta elementum a enim euismod quam justo lectus. Curabitur facilisi cubilia curae hac habitasse platea dictumst. Nisl malesuada lacinia integer nunc posuere ut hendrerit. Efficitur laoreet mauris pharetra vestibulum fusce dictum risus.",
+        "overlay_color": "background",
+        "overlay_opacity": 10,
+        "text_color": "foreground",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "content_align": "center",
+        "vertical_position": "middle",
+        "horizontal_position": "center",
+        "heading": "Modern Style, All-Day Comfort",
+        "description": "Embrace effortless fashion with our latest collection — where clean silhouettes, breathable fabrics, and timeless style come together. Designed for movement, made for every moment.",
         "button_label": "Shop Now",
         "button_url": "shopify://products/hoodie-01-l",
         "button_open_newtab": "no",
         "button_size": "lg",
-        "padding_top": 20,
-        "padding_bottom": 130
+        "button_color": "foregorund"
       }
     },
     "product_list_bti6Y9": {
@@ -31,44 +36,40 @@
       "settings": {
         "title": "Featured Products",
         "collection": "frontpage",
-        "margin_top": -100,
-        "padding_top": "none",
+        "margin_top": -120,
+        "padding_top": "small",
+        "padding_bottom": "medium",
+        "padding_left": "small",
+        "padding_right": "small",
+        "content-width": "contained",
+        "mobile-column": "2",
+        "tablet-column": "3",
+        "desktop-column": "5",
+        "background_color": "rgba(0,0,0,0)"
+      }
+    },
+    "testimonial_slider_UheJ4W": {
+      "type": "testimonial-slider",
+      "name": "Testimonial Slider",
+      "settings": {
+        "title": "Customer Reviews",
+        "title_align": "center",
+        "margin_top": 0,
+        "padding_top": "medium",
         "padding_bottom": "medium",
         "padding_left": "small",
         "padding_right": "small",
         "content-width": "contained",
         "mobile-column": "1",
-        "tablet-column": "4",
-        "desktop-column": "5",
-        "background_color": "rgba(0,0,0,0)"
+        "tablet-column": "1",
+        "desktop-column": "1",
+        "background_color": "#f2f2f2"
       }
     },
-    "17542038558d6f10a4": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_homepage_ULNrpc": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "product": ""
-          }
-        },
-        "judge_me_reviews_featured_carousel_yzKFKr": {
-          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "maxwidth": 1080
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_homepage_ULNrpc",
-        "judge_me_reviews_featured_carousel_yzKFKr"
-      ],
-      "settings": {}
-    }
   },
   "order": [
     "video_background_DhjiJw",
     "product_list_bti6Y9",
-    "17542038558d6f10a4"
+    "testimonial_slider_UheJ4W"
   ]
 }
