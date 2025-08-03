@@ -125,9 +125,6 @@
   function initCarouselSection{{ unique_suffix }}(sectionEl) {
     const container = sectionEl.querySelector('.owl-product{{ unique_suffix }}');
     const slider = container?.querySelector('.owl-product{{ unique_suffix }} .owl-carousel');
-    console.log('jotest sectionEl', sectionEl);
-    console.log('jotest container', container);
-    console.log('jotest slider', slider);
 
     if (!container || !slider || slider.children.length === 0) {
       return;
