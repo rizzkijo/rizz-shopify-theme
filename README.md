@@ -9,6 +9,7 @@ Implemented the following:
 
 ## Tech Stack
 - Shopify Liquid
+- Tailwind CSS
 - jQuery
 - Owl Carousel
 - Theme hosted via GitHub + demo on Shopify development store
