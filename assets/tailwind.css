@@ -113,3 +113,48 @@ button, a {
     @apply !bg-primary;
   }
 }
+
+.star-rating {
+  --star-size: 1.5rem;
+  --star-color: #ddd;
+  --star-background: var(--color-primary); /* Tailwind yellow-400 */
+  --star-count: 5;
+
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  line-height: 1;
+}
+
+.star-rating::before {
+  content: '★★★★★';
+  color: var(--star-color);
+}
+
+.star-rating::after {
+  content: '★★★★★';
+  color: var(--star-background);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--rating) / var(--star-count) * 100%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.owl-theme {
+  .owl-dots {
+    .owl-dot {
+      &.active,
+      &:hover {
+        span {
+          @apply !bg-primary;
+        }
+      }
+      span {
+        @apply !w-[12px] !h-[12px] !mx-[4px];
+      }
+    }
+  }
+}

@@ -91,7 +91,11 @@
       preload="none"
       muted
       playsinline
-      poster="{{ section.settings.cover_image | image_url: 'master' }}"
+      poster="{% if section.settings.cover_image %}
+        {{ section.settings.cover_image | image_url }}
+      {% else %}
+        {{ 'cover-image.png' | asset_url }}
+      {% endif %}"
       data-src="{{ section.settings.upload_video | asset_url | escape }}"
     ></video>
   {%- else -%}
@@ -102,7 +106,11 @@
       preload="none"
       muted
       playsinline
-      poster="{{ 'cover-image.png' | asset_url }}"
+      poster="{% if section.settings.cover_image %}
+        {{ section.settings.cover_image | image_url }}
+      {% else %}
+        {{ 'cover-image.png' | asset_url }}
+      {% endif %}"
       data-src="https://assets.mixkit.co/videos/14776/14776-720.mp4"
     ></video>
   {%- endif -%}

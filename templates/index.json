@@ -47,10 +47,29 @@
         "desktop-column": "5",
         "background_color": "rgba(0,0,0,0)"
       }
+    },
+    "testimonial_slider_UheJ4W": {
+      "type": "testimonial-slider",
+      "name": "Testimonial Slider",
+      "settings": {
+        "title": "Customer Reviews",
+        "title_align": "center",
+        "margin_top": 0,
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "padding_left": "small",
+        "padding_right": "small",
+        "content-width": "contained",
+        "mobile-column": "1",
+        "tablet-column": "1",
+        "desktop-column": "1",
+        "background_color": "#f2f2f2"
+      }
     }
   },
   "order": [
     "video_background_DhjiJw",
-    "product_list_bti6Y9"
+    "product_list_bti6Y9",
+    "testimonial_slider_UheJ4W"
   ]
 }

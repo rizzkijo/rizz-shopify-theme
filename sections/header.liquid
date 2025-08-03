@@ -23,10 +23,12 @@
   
     <div class="header__icons">
       {% if shop.customer_accounts_enabled %}
-        {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
+        <a href="{{ routes.account_url }}" aria-label="Go to account page">
+          {{ 'icon-account.svg' | inline_asset_content }}
+        </a>
       {% endif %}
   
-      <a href="{{ routes.cart_url }}">
+      <a href="{{ routes.cart_url }}" aria-label="Go to Cart page">
         <sup
           id="cart-item-count"
           class="absolute -top-2 -right-2 w-[22px] h-[22px] text-xs flex items-center

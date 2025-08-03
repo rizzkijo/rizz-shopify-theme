@@ -11,7 +11,7 @@
   "current": {
     "logo_image": "shopify://shop_images/rizzkijo-logo-small.png",
     "favicon_image": "shopify://shop_images/favicon.png",
-    "type_primary_font": "assistant_n4",
+    "type_primary_font": "open_sans_n4",
     "type_heading_font": "aleo_n4",
     "background_color": "#f7f7f7",
     "foreground_color": "#212121",
