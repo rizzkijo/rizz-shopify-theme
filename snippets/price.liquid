@@ -6,7 +6,7 @@
   endif
 -%}
 
-<p class="price-container flex items-baseline gap-2 flex-wrap text-xl leading-[1.2]">
+<p class="price-container flex items-baseline gap-x-2 gap-y-0 flex-wrap text-base md:text-lg leading-[1.2]">
   {% if finalPrice %}
     <span class="final-price font-bold">{{ finalPrice | money }}</span>
   {% endif %}

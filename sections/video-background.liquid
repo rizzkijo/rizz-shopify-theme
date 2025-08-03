@@ -1,35 +1,91 @@
-{%- if section.settings.overlay_opacity == 10 -%}
+{%- if section.settings.overlay_opacity == 10 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/10 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 20 -%}
+{%- elsif section.settings.overlay_opacity == 20 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/20 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 30 -%}
+{%- elsif section.settings.overlay_opacity == 30 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/30 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 40 -%}
+{%- elsif section.settings.overlay_opacity == 40 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/40 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 50 -%}
+{%- elsif section.settings.overlay_opacity == 50 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/50 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 60 -%}
+{%- elsif section.settings.overlay_opacity == 60 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/60 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 70 -%}
+{%- elsif section.settings.overlay_opacity == 70 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/70 to-background' -%}
-{%- elsif section.settings.overlay_opacity == 80 -%}
+{%- elsif section.settings.overlay_opacity == 80 and section.settings.overlay_color == 'background' -%}
   {%- assign overlay_class = 'bg-gradient-to-b from-background/80 to-background' -%}
-{%- else -%}
+{%- elsif section.settings.overlay_opacity == 0 -%}
   {%- assign overlay_class = 'bg-transparent' -%}
 {%- endif -%}
 
-{%- if section.settings.button_size == 'md' -%}
-  {%- assign btn_size_class = 'px-8 h-12 rounded-md' -%}
-{%- elsif section.settings.button_size == 'lg' -%}
-  {%- assign btn_size_class = 'px-12 h-15 rounded-lg text-lg' -%}
+{%- if section.settings.overlay_opacity == 10 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/10 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 20 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/20 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 30 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/30 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 40 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/40 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 50 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/50 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 60 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/60 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 70 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/70 to-foreground' -%}
+{%- elsif section.settings.overlay_opacity == 80 and section.settings.overlay_color == 'foreground' -%}
+  {%- assign overlay_class = 'bg-gradient-to-b from-foreground/80 to-foreground' -%}
+{%- endif -%}
+
+{%- if section.settings.text_color == 'background' -%}
+  {%- assign text_color_class = 'text-background' -%}
 {%- else -%}
-  {%- assign btn_size_class = 'px-16 h-16 rounded-xl text-xl' -%}
+  {%- assign text_color_class = 'text-foreground' -%}
+{%- endif -%}
+
+{%- if section.settings.button_size == 'md' -%}
+  {%- assign btn_size_class = 'px-6 h-10 rounded md:px-8 md:h-12 md:rounded-md' -%}
+{%- elsif section.settings.button_size == 'lg' -%}
+  {%- assign btn_size_class = 'px-6 h-10 rounded lg:px-12 lg:h-15 lg:rounded-lg lg:text-lg' -%}
+{%- else -%}
+  {%- assign btn_size_class = 'px-6 h-10 rounded md:px-8 md:h-12 md:rounded-md lg:px-12 lg:h-15 lg:rounded-lg lg:text-lg xl:px-16 xl:h-16 xl:rounded-xl xl:text-xl' -%}
+{%- endif -%}
+
+{%- if section.settings.button_color == 'primary' -%}
+  {%- assign button_color_class = 'bg-primary text-background hover:bg-primary-hover' -%}
+{%- elsif section.settings.button_color == 'background' -%}
+  {%- assign button_color_class = 'bg-background/80 text-foreground hover:bg-background' -%}
+{%- else -%}
+  {%- assign button_color_class = 'bg-foreground/80 text-background hover:bg-foreground' -%}
+{%- endif -%}
+
+{%- if section.settings.content_align == 'left' -%}
+  {%- assign content_align_class = 'items-start justify-start text-left' -%}
+{%- elsif section.settings.content_align == 'center' -%}
+  {%- assign content_align_class = 'items-center justify-center text-center' -%}
+{%- else -%}
+  {%- assign content_align_class = 'items-end justify-end text-right' -%}
+{%- endif -%}
+
+{%- if section.settings.vertical_position == 'top' -%}
+  {%- assign vertical_class = 'justify-start' -%}
+{%- elsif section.settings.vertical_position == 'middle' -%}
+  {%- assign vertical_class = 'justify-center' -%}
+{%- else -%}
+  {%- assign vertical_class = 'justify-end' -%}
+{%- endif -%}
+
+{%- if section.settings.horizontal_position == 'left' -%}
+  {%- assign horizontal_class = 'items-start' -%}
+{%- elsif section.settings.horizontal_position == 'center' -%}
+  {%- assign horizontal_class = 'items-center' -%}
+{%- else -%}
+  {%- assign horizontal_class = 'items-end' -%}
 {%- endif -%}
 
 <div class="relative" data-section-id={{ section.id }}>
   {%- if section.settings.upload_video -%}
     <video
-      class="w-full aspect-[3/4] md:aspect-[16/6.5] object-cover"
+      class="w-full aspect-[3/4.5] md:aspect-[16/7] object-cover"
       loop
       autoplay
       preload="none"
@@ -40,7 +96,7 @@
     ></video>
   {%- else -%}
     <video
-      class="w-full aspect-[3/4] md:aspect-[16/6.5] object-cover"
+      class="w-full aspect-[3/4.5] md:aspect-[16/7] object-cover"
       loop
       autoplay
       preload="none"
@@ -50,28 +106,27 @@
       data-src="https://assets.mixkit.co/videos/14776/14776-720.mp4"
     ></video>
   {%- endif -%}
-  <div
-    class="hero-overlay absolute top-0 right-0 bottom-0 left-0 z-1
-      flex flex-col items-center justify-end {{ overlay_class }}"
-  >
-    <div
-      class="w-full md:max-w-[700px] xl:max-w-[1000px] mx-auto px-4 text-center flex flex-col items-center"
-      style="color: {{ section.settings.text_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px"
-    >
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold !mb-4">{{ section.settings.heading }}</h2>
-      <p class="text-base md:text-lg">{{ section.settings.description }}</p>
-      {%- if section.settings.button_url != blank -%}
-        <a
-          href="{{ section.settings.button_url }}"
-          {%- if section.settings.button_open_newtab == 'yes' -%}
-            target="blank"
-          {%- endif -%}
-          class="flex w-max items-center justify-center !mt-6 md:!mt-8 bg-primary text-white
-          {{ btn_size_class }} transition-all duration-200 hover:bg-secondary/60"
-        >
-          {{ section.settings.button_label }}
-        </a>
-      {%- endif -%}
+  <div class="hero-overlay absolute top-0 right-0 bottom-0 left-0 z-1 {{ overlay_class }}">
+    <div class="container !mx-auto flex flex-col h-full {{ vertical_class }} {{ horizontal_class }}">
+      <div
+        class="w-full md:max-w-[700px] xl:max-w-[1000px] mx-auto flex flex-col {{ content_align_class }} {{ text_color_class }}"
+        style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px"
+      >
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold !mb-4">{{ section.settings.heading }}</h2>
+        <p class="text-base md:text-lg">{{ section.settings.description }}</p>
+        {%- if section.settings.button_url != blank -%}
+          <a
+            href="{{ section.settings.button_url }}"
+            {%- if section.settings.button_open_newtab == 'yes' -%}
+              target="blank"
+            {%- endif -%}
+            class="flex w-max items-center justify-center !mt-6 md:!mt-8 shadow-lg font-bold
+            {{ button_color_class }} {{ btn_size_class }} transition-all duration-200"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </div>
@@ -116,6 +171,16 @@
       "label": "Cover Image"
     },
     {
+      "type": "select",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "options": [
+        { "value": "background", "label": "Background" },
+        { "value": "foreground", "label": "Foreground" },
+      ],
+      "default": "foreground",
+    },
+    {
       "type": "range",
       "id": "overlay_opacity",
       "label": "Overlay Opacity",
@@ -125,10 +190,59 @@
       "step": 10,
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "text_color",
       "label": "Text Color",
-      "default": "#ffffff",
+      "options": [
+        { "value": "background", "label": "Background" },
+        { "value": "foreground", "label": "Foreground" },
+      ],
+      "default": "foreground",
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 50,
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 50,
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Content Align",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" },
+      ],
+      "default": "left",
+    },
+    {
+      "type": "select",
+      "id": "vertical_position",
+      "label": "Content Vertical Position",
+      "options": [
+        { "value": "top", "label": "Top"  },
+        { "value": "middle", "label": "Middle"  },
+        { "value": "bottom", "label": "Bottom"  },
+      ],
+      "default": "middle",
+    },
+    {
+      "type": "select",
+      "id": "horizontal_position",
+      "label": "Content Horizontal Position",
+      "options": [
+        { "value": "left", "label": "Left"  },
+        { "value": "center", "label": "Center"  },
+        { "value": "right", "label": "Right"  },
+      ],
+      "default": "center",
     },
     {
       "type": "text",
@@ -176,16 +290,15 @@
       "default": "lg",
     },
     {
-      "type": "number",
-      "id": "padding_top",
-      "label": "Padding Top",
-      "default": 50,
-    },
-    {
-      "type": "number",
-      "id": "padding_bottom",
-      "label": "Padding Bottom",
-      "default": 50,
+      "type": "select",
+      "id": "button_color",
+      "label": "Button Color",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "background", "label": "Background" },
+        { "value": "foregorund", "label": "Foreground" },
+      ],
+      "default": "primary",
     },
   ],
   "presets": [

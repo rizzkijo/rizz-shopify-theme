@@ -13,16 +13,21 @@
       "type": "video-background",
       "name": "Video Background",
       "settings": {
-        "overlay_opacity": 60,
-        "text_color": "#efefef",
-        "heading": "Curabitur facilisi",
-        "description": "Porta elementum a enim euismod quam justo lectus. Curabitur facilisi cubilia curae hac habitasse platea dictumst. Nisl malesuada lacinia integer nunc posuere ut hendrerit. Efficitur laoreet mauris pharetra vestibulum fusce dictum risus.",
+        "overlay_color": "background",
+        "overlay_opacity": 10,
+        "text_color": "foreground",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "content_align": "center",
+        "vertical_position": "middle",
+        "horizontal_position": "center",
+        "heading": "Modern Style, All-Day Comfort",
+        "description": "Embrace effortless fashion with our latest collection — where clean silhouettes, breathable fabrics, and timeless style come together. Designed for movement, made for every moment.",
         "button_label": "Shop Now",
         "button_url": "shopify://products/hoodie-01-l",
         "button_open_newtab": "no",
         "button_size": "lg",
-        "padding_top": 20,
-        "padding_bottom": 130
+        "button_color": "foregorund"
       }
     },
     "product_list_bti6Y9": {
@@ -31,14 +36,14 @@
       "settings": {
         "title": "Featured Products",
         "collection": "frontpage",
-        "margin_top": -100,
-        "padding_top": "none",
+        "margin_top": -120,
+        "padding_top": "small",
         "padding_bottom": "medium",
         "padding_left": "small",
         "padding_right": "small",
         "content-width": "contained",
-        "mobile-column": "1",
-        "tablet-column": "4",
+        "mobile-column": "2",
+        "tablet-column": "3",
         "desktop-column": "5",
         "background_color": "rgba(0,0,0,0)"
       }
