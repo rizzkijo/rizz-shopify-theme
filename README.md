@@ -7,22 +7,6 @@ Implemented the following:
 - Testimonial Carousel section using Metaobjects (manual CMS entry) ✅
 - Mobile Responsiveness & Performance ✅
 
-<h3 style="position: relative;">
-  Desktop Performance Score
-  <br />
-  <br>
-    <img src="./assets/desktop-performance.png" alt="Desktop Performance Score" width="700">
-  <br>
-</h3>
-
-<h3 style="position: relative;">
-  Mobile Performance Score
-  <br />
-  <br>
-    <img src="./assets/mobile-performance.png" alt="Mobile Performance Score" width="700">
-  <br>
-</h3>
-
 ## Tech Stack
 - Shopify Liquid
 - jQuery

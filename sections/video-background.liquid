@@ -82,10 +82,10 @@
   {%- assign horizontal_class = 'items-end' -%}
 {%- endif -%}
 
-<div class="relative" data-section-id={{ section.id }}>
+<div class="relative aspect-[3/4.5] md:aspect-[16/7]" data-section-id={{ section.id }}>
   {%- if section.settings.upload_video -%}
     <video
-      class="w-full aspect-[3/4.5] md:aspect-[16/7] object-cover"
+      class="!w-full !h-full object-cover"
       loop
       autoplay
       preload="none"
@@ -100,7 +100,7 @@
     ></video>
   {%- else -%}
     <video
-      class="w-full aspect-[3/4.5] md:aspect-[16/7] object-cover"
+      class="!w-full !h-full object-cover"
       loop
       autoplay
       preload="none"
